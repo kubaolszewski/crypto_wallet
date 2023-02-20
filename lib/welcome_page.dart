@@ -29,6 +29,10 @@ class WelcomePage extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.purple),
+                ),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
