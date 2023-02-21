@@ -54,10 +54,13 @@ class MainPage extends StatelessWidget {
                   ),
                 );
               }
+
               return Center(
                 child: Column(
                   children: [
+                    const SizedBox(height: 20),
                     _SearchWidget(),
+                    const SizedBox(height: 20),
                     if (currencyModel != null)
                       _CurrencyModel(currencyModel: currencyModel),
                   ],
@@ -106,6 +109,7 @@ class _SearchWidget extends StatelessWidget {
                     context
                         .read<MainPageCubit>()
                         .getCurrencyData(currencyName: _controller.text);
+                    _controller.clear();
                   },
                   child: Text(
                     'Search',
@@ -132,25 +136,34 @@ class _CurrencyModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currencyModel.name,
-            style: GoogleFonts.righteous(
-              color: Colors.white,
-              fontSize: 32,
-            ),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            color: Colors.red.shade300),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                currencyModel.name,
+                style: GoogleFonts.righteous(
+                  color: Colors.white,
+                  fontSize: 36,
+                  letterSpacing: 3.0,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                '${currencyModel.conversionCurrency} : ${currencyModel.value.toStringAsFixed(2)}',
+                style: GoogleFonts.righteous(
+                  color: Colors.white,
+                  fontSize: 36,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 40),
-          Text(
-            currencyModel.value.toString(),
-            style: GoogleFonts.righteous(
-              color: Colors.white,
-              fontSize: 32,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

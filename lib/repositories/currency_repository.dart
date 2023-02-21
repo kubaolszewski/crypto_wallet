@@ -9,13 +9,11 @@ class CurrencyRepository {
   Future<CurrencyModel?> getCurrencyData({
     required String currencyName,
   }) async {
-    final responseData =
+    final json =
         await _currencyDataSource.getCurrencyData(currencyName: currencyName);
 
-    if (responseData == null) return null;
+    if (json == null) return null;
 
-    final name = responseData['asset_id_base'] as String;
-    final value = (responseData['rate'] + 0.0) as double;
-    return CurrencyModel(name: name, value: value);
+    return CurrencyModel.fromJson(json);
   }
 }
