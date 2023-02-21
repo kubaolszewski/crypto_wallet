@@ -1,4 +1,4 @@
-import 'package:crypto_wallet/auth/pages/home_page.dart';
+import 'package:crypto_wallet/features/route_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
@@ -24,7 +24,7 @@ class AuthGate extends StatelessWidget {
         }
 
         // Render your application if authenticated
-        return const HomePage();
+        return const RoutePage();
       },
     );
   }

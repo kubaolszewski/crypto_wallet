@@ -1,37 +1,37 @@
-import 'package:crypto_wallet/auth/pages/my_account_page.dart';
+import 'package:crypto_wallet/features/main_page.dart';
+import 'package:crypto_wallet/features/my_account_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class RoutePage extends StatefulWidget {
+  const RoutePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<RoutePage> createState() => _RoutePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RoutePageState extends State<RoutePage> {
   var currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green[600],
+      appBar: AppBar(
+        primary: true,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.green,
+        title: Text(
+          'My Crypto Wallet',
+          style: GoogleFonts.righteous(
+            color: Colors.white,
+            fontSize: 24,
+          ),
+        ),
+      ),
       body: Builder(
         builder: (context) {
           if (currentIndex == 0) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Hello :)',
-                    style: GoogleFonts.righteous(
-                      color: Colors.white,
-                      fontSize: 32,
-                    ),
-                  )
-                ],
-              ),
-            );
+            return const MainPage();
           }
 
           return const MyAccountPage();
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                 Icons.home,
                 size: 32,
               ),
-              label: 'Home',
+              label: '',
             ),
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
