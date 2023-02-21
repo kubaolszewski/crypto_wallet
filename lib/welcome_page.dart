@@ -1,4 +1,4 @@
-import 'package:crypto_wallet/auth/pages/auth_gate.dart';
+import 'package:crypto_wallet/app/auth/pages/auth_gate.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
