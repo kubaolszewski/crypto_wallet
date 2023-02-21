@@ -11,14 +11,14 @@ class MainPageCubit extends Cubit<MainPageState> {
 
   final CurrencyRepository _currencyRepository;
 
-  Future<void> getCurrencyInfo({
+  Future<void> getCurrencyData({
     required String currencyName,
   }) async {
     emit(
       const MainPageState(status: Status.loading),
     );
     try {
-      final searchedCurrency = await _currencyRepository.getCurrencyInfo(
+      final searchedCurrency = await _currencyRepository.getCurrencyData(
         currencyName: currencyName,
       );
       emit(

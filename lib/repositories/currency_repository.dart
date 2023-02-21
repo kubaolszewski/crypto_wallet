@@ -1,14 +1,21 @@
+import 'package:crypto_wallet/data_sources/remote_data_source.dart';
 import 'package:crypto_wallet/models/currency_model.dart';
-import 'package:dio/dio.dart';
 
 class CurrencyRepository {
-  Future<CurrencyModel>? getCurrencyInfo({
+  CurrencyRepository(this._currencyDataSource);
+
+  final CurrencyDataSource _currencyDataSource;
+
+  Future<CurrencyModel?> getCurrencyData({
     required String currencyName,
   }) async {
-    final serverResponse = await Dio().get(
-        'http://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=AC91C75A-6B9B-4E11-8F80-1F123E2B216E');
-    return CurrencyModel(name: 'Bitcoin', value: 25000.00);
-  }
+    final responseData =
+        await _currencyDataSource.getCurrencyData(currencyName: currencyName);
 
-// http://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=AC91C75A-6B9B-4E11-8F80-1F123E2B216E
+    if (responseData == null) return null;
+
+    final name = responseData['asset_id_base'] as String;
+    final value = (responseData['rate'] + 0.0) as double;
+    return CurrencyModel(name: name, value: value);
+  }
 }

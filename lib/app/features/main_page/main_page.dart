@@ -1,4 +1,5 @@
 import 'package:crypto_wallet/app/features/main_page/cubit/main_page_cubit.dart';
+import 'package:crypto_wallet/data_sources/remote_data_source.dart';
 import 'package:crypto_wallet/models/currency_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +17,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => MainPageCubit(
-        CurrencyRepository(),
+        CurrencyRepository(CurrencyDataSource()),
       ),
       child: BlocConsumer<MainPageCubit, MainPageState>(
         listener: (context, state) {
@@ -102,9 +103,9 @@ class _SearchWidget extends StatelessWidget {
                 const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
-                    // context
-                    //     .read<MainPageCubit>()
-                    //     .getCurrencyInfo(currencyName: _controller.text);
+                    context
+                        .read<MainPageCubit>()
+                        .getCurrencyData(currencyName: _controller.text);
                   },
                   child: Text(
                     'Search',
