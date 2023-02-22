@@ -1,5 +1,5 @@
-import 'package:crypto_wallet/features/main_page.dart';
-import 'package:crypto_wallet/features/my_account_page.dart';
+import 'package:crypto_wallet/app/features/main_page/main_page.dart';
+import 'package:crypto_wallet/app/features/my_account_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,6 +17,11 @@ class _RoutePageState extends State<RoutePage> {
     return Scaffold(
       backgroundColor: Colors.green[600],
       appBar: AppBar(
+        leading: const Icon(
+          Icons.currency_bitcoin,
+          color: Colors.white,
+          size: 32,
+        ),
         primary: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.green,
@@ -58,10 +63,10 @@ class _RoutePageState extends State<RoutePage> {
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               icon: Icon(
-                Icons.home,
+                Icons.currency_exchange,
                 size: 32,
               ),
-              label: '',
+              label: 'Currencies',
             ),
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
